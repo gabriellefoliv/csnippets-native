@@ -3,30 +3,41 @@ import { Dialog, DialogContent, DialogTrigger } from "./Dialog";
 import { formatDistanceToNow } from "date-fns";
 import { ptBR } from 'date-fns/locale'
 
-export function Snippet() {
+import {MaterialIcons} from '@expo/vector-icons'
+
+export type SnippetProps = {
+    id: string
+    snippetTitle: string
+    snippet: string
+}
+
+type Props = {
+    data: SnippetProps
+    onPress: () => void
+}
+
+export function Snippet({ data, onPress }: Props) {
     return (
-        <Dialog>
-            <DialogTrigger>
-            <Text className='text-sm font-medium text-slate-300'>
-            </Text>
-            <Text className='text-sm leading-6 text-slate-500'>
-                Lalalala
-            </Text>
-            <View className='absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black/60 to-black/0 pointer-events-none' />
-            </DialogTrigger>
+        <View className="w-full p-4 flex-row">
+            <View className="px-8 py-4 bg-red-200 flex-1 rounded-md">
+                <Text className="font-bold text-xl">
+                    {data.snippetTitle}
+                </Text>
 
-                <DialogContent className='fixed overflow-hidden inset-0 md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:max-w-[640px] md:h-[60vh] w-full bg-slate-700 md:rounded-md flex flex-col outline-none'>
-                    
-                    <View className='flex flex-1 flex-col gap-3 p-5'>
-                        <Text className='text-sm font-medium text-slate-300'>
-                        </Text>
-                        <Text className='text-sm leading-6 text-slate-600'>
-                        </Text>
-                    </View> 
+            <View>
+                <Text>{data.snippet}</Text>
+            </View>
 
-                                 
-                </DialogContent>
-
-        </Dialog>
+            </View>
+            <TouchableOpacity
+                onPress={onPress}
+                >
+                <MaterialIcons
+                    name="delete"
+                    size={22}
+                    color="#888D97"
+                />
+            </TouchableOpacity>
+        </View>
     )
 }

@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 
 import HomeTabs from './src/routes/routes'
+import { CreateSnippet } from './src/components/create-snippet'
 
 const Stack = createStackNavigator()
 
@@ -22,6 +23,11 @@ export default function App() {
         <Stack.Screen 
           name="HomeTabs" 
           component={HomeTabs}
+          
+        />
+        <Stack.Screen 
+          name="CreateSnippet" 
+          component={CreateSnippet}
           
         />
       </Stack.Navigator>

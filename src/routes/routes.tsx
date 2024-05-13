@@ -1,5 +1,3 @@
-import { createNativeStackNavigator } from "@react-navigation/native-stack"
-import Welcome from "../pages/Welcome"
 import Home from "../pages/Home"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import Profile from "../pages/Profile"
@@ -35,7 +33,7 @@ export default function HomeTabs() {
                           <FontAwesome5 
                             name="home"
                             size={20} 
-                            color={tabInfo.focused ? "bg-cyan-900/70" : "#8e8e93"} 
+                            color={tabInfo.focused ? "#0e7490" : "#8e8e93"} 
                           /> 
                         ); 
                     }
@@ -48,7 +46,7 @@ export default function HomeTabs() {
                             <AntDesign 
                                 name="star"
                                 size={20} 
-                                color={tabInfo.focused ? "bg-cyan-900/70":""}
+                                color={tabInfo.focused ? "#0e7490":"#8e8e93"}
                             />
                         )
                     }
@@ -61,7 +59,7 @@ export default function HomeTabs() {
                             <FontAwesome 
                                 name="user" 
                                 size={20} 
-                                color={tabInfo.focused ? "bg-cyan-900/70":""}
+                                color={tabInfo.focused ? "#0e7490":"#8e8e93"}
                             />
                         )
                     }

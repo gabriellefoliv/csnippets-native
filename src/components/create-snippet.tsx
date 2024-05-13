@@ -1,32 +1,89 @@
-import { Text, TextInput, TouchableOpacity, View } from "react-native";
+import { ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
 import Editor from "./editor";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "./Dialog";
 
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { Header } from "./header";
+
+import CodeEditor, { CodeEditorSyntaxStyles } from '@rivascva/react-native-code-editor';
+import { useAsyncStorage } from "@react-native-async-storage/async-storage";
+
+import uuid from 'react-native-uuid'
+
+import Toast from 'react-native-toast-message'
 
 export function CreateSnippet() {
+
+    const [snippetTitle, setSnippetTitle] = useState("")
+    const [snippet, setSnippet] = useState("")
+
+    const { getItem, setItem } = useAsyncStorage("@csnippets:snippets")
+
+    async function handleNew() {
+        try {
+            const id = uuid.v4()
+
+            const newData = {
+                id, 
+                snippetTitle,
+                snippet
+            }
+
+            const response = await getItem()
+            const previousData = response ? JSON.parse(response) : []
+
+            const data = [...previousData, newData]
+
+            await setItem(JSON.stringify(data))
+
+        } catch (error) {
+            console.log(error)
+
+        }
+    }
     
     return (
-        <Dialog>
-            <DialogTrigger >
-                <Text className='text-sm font-medium text-slate-200'>
-                    Adicionar nota
-                </Text>
-                <Text className='text-sm leading-6 text-slate-500'>
-                    Grave uma nota em áudio que será convertida para texto automaticamente.
-                </Text>
-            </DialogTrigger>
-                <DialogContent className='fixed overflow-hidden md:left-1/2 inset-0 md:inset-auto md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:max-w-[640px] md:h-[60vh] w-full bg-slate-700 md:rounded-md flex flex-col outline-none'>
-                    
-                    <View className='flex-1 flex flex-col'>
+        <KeyboardAwareScrollView>
+            <View>
+                <Header title="Crie seu Snippet!"/>
 
-                        <View className='flex flex-1 flex-col gap-3 p-5'>      
-                            
-                        </View>
+                <View className="w-full p-4">
+                    <TextInput
+                        placeholder="Insira o título do snippet aqui..."
+                        className="p-4 border-b-2 border-black/20 bg-gray-500/10 font-bold"
+                        enterKeyHint="done"
+                        onChangeText={setSnippetTitle}
+                    />
+                </View>
+
+                <ScrollView>
+                    <View className="p-4">
+                        
+                        <CodeEditor
+                            style={{
+                                fontSize: 20,
+                                inputLineHeight: 26,
+                                highlighterLineHeight: 26,
+                            }}
+                            language="javascript"
+                            syntaxStyle={CodeEditorSyntaxStyles.atomOneDark}
+                            showLineNumbers
+                            onChange={setSnippet}
+                        />
 
                     </View>
+                </ScrollView>
 
-                </DialogContent>
-        </Dialog>
+                <TouchableOpacity onPress={handleNew}>
+                    <View className="w-full justify-center items-center bg-cyan-800/20">
+                        <Text className="p-4">
+                            Salvar Snippet
+                        </Text>
+                    </View>
+                </TouchableOpacity>
+
+            </View>
+        </KeyboardAwareScrollView>
     )
 }

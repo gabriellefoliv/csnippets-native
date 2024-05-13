@@ -1,29 +1,62 @@
-import { Button, Pressable, SafeAreaView, ScrollView, Text, TextInput, TextInputChangeEventData, Touchable, TouchableOpacity, View } from "react-native";
+import { FlatList, Text, View } from "react-native";
 
-import { FontAwesome5 } from '@expo/vector-icons'
 import { Header } from "../components/header";
-import { ChangeEvent, useEffect, useState } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import {CreateSnippet} from "../components/create-snippet";
-import { Snippet } from "../components/snippet";
+import { useCallback, useEffect, useState } from "react";
+import { CreateSnippet } from "../components/create-snippet";
+import { Snippet, SnippetProps } from "../components/snippet";
 
-
+import AsyncStorage, { useAsyncStorage } from "@react-native-async-storage/async-storage";
+import { useFocusEffect } from "@react-navigation/native";
+import { AddButton } from "../components/addButton";
   
+
+
 export default function Home() {
-    const [search, setSearch] = useState('')
+
+    const [data, setData] = useState<SnippetProps[]>([])
+
+    const { getItem, setItem } = useAsyncStorage("@csnippets:snippets")
+
+    async function handleFetchData() {
+      const response = await getItem() 
+      const data = response ? JSON.parse(response) : []
+      setData(data)
+    }
+
+    async function handleRemove(id: string) {
+      const response = await getItem() 
+      const previousData = response ? JSON.parse(response) : []
+
+      const data = previousData.filter((item: SnippetProps) => item.id !== id)
+      setItem(JSON.stringify(data))
+      setData(data)
+    }
+
+    useFocusEffect(useCallback(() => {
+      handleFetchData()
+    }, []))
   
     return (
       <View>
   
         <Header title="Code Snippets" />
 
-        <View>
-          <CreateSnippet/>
-          <Snippet/>
-          <Snippet/>
-          <Snippet/>
-          <Snippet/>
-        </View>
+        <AddButton />
+
+        <Text>
+          {`${data.length} ao total`}
+        </Text>
+        
+        <FlatList
+          data={data}
+          keyExtractor={item => item.id}
+          renderItem={({ item }) => 
+            <Snippet
+              data={item}
+              onPress={() => handleRemove(item.id)}
+            />
+          }
+        />
   
       </View>
     );
