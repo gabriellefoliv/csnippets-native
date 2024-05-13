@@ -16,14 +16,14 @@ export function Account({ onChangeAvatar, image }: Props) {
                 className="w-24 h-52 z-10"    
             />
 
-            <View className="bg-black/20 self-stretch items-center pb-6 border border-white/10 mx-3 rounded-2xl -mt-5">
+            <View className="bg-stone-900 self-stretch items-center pb-6 border border-white/10 mx-3 rounded-2xl -mt-5">
                 <ImageBackground 
                     source={require("../assets/header.png")} 
                     className="px-6 py-8 h-40 items-center self-stretch border-b border-white/10 overflow-hidden"
                 >
                     <View className="w-full flex-row items-center justify-between">
-                        <Text className="text-zinc-50 text-sm font-bold">Unite summit</Text>
-                        <Text className="text-zinc-50 text-sm font-bold">#123</Text>
+                        <Text className="text-zinc-50 text-sm font-bold">Code Snippets</Text>
+                        <Text className="text-zinc-50 text-sm font-bold">#111</Text>
                     </View>
 
                     <View className="w-40 h-40 bg-black rounded-full" />

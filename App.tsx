@@ -6,11 +6,13 @@ import { createStackNavigator } from '@react-navigation/stack'
 
 import HomeTabs from './src/routes/routes'
 import { CreateSnippet } from './src/components/create-snippet'
+import Toast from 'react-native-toast-message'
 
 const Stack = createStackNavigator()
 
 export default function App() {
   return (
+    <>
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{headerShown: false}}
@@ -32,6 +34,8 @@ export default function App() {
         />
       </Stack.Navigator>
     </NavigationContainer>
+    <Toast/>
+    </>
 
   )
 }

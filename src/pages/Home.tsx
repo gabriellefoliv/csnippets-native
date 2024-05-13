@@ -43,7 +43,7 @@ export default function Home() {
 
         <AddButton />
 
-        <Text>
+        <Text className="text-right px-6 font-bold text-xl">
           {`${data.length} ao total`}
         </Text>
         

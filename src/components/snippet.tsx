@@ -1,5 +1,4 @@
 import { Button, Text, TouchableOpacity, View } from "react-native";
-import { Dialog, DialogContent, DialogTrigger } from "./Dialog";
 import { formatDistanceToNow } from "date-fns";
 import { ptBR } from 'date-fns/locale'
 
@@ -18,26 +17,32 @@ type Props = {
 
 export function Snippet({ data, onPress }: Props) {
     return (
-        <View className="w-full p-4 flex-row">
-            <View className="px-8 py-4 bg-red-200 flex-1 rounded-md">
-                <Text className="font-bold text-xl">
-                    {data.snippetTitle}
-                </Text>
+        <View className="w-full flex-row p-4 ">
+                <View className=" flex-row w-full border-black/20 border-2 rounded-xl">
 
-            <View>
-                <Text>{data.snippet}</Text>
-            </View>
+                    <View className="px-8 py-12 flex-1 rounded-md">
+                        <Text className="font-bold text-xl">
+                            {data.snippetTitle}
+                        </Text>
 
-            </View>
-            <TouchableOpacity
-                onPress={onPress}
-                >
-                <MaterialIcons
-                    name="delete"
-                    size={22}
-                    color="#888D97"
-                />
-            </TouchableOpacity>
+                    <View className="mt-4">
+                        <Text className="text-gray-500">{data.snippet}</Text>
+                    </View>
+
+                    </View>
+                    <TouchableOpacity
+                        onPress={onPress}
+                    >
+                        <View className="py-12 px-8">
+
+                            <MaterialIcons
+                                name="delete"
+                                size={22}
+                                color="#888D97"
+                            />
+                        </View>
+                    </TouchableOpacity>
+                </View>
         </View>
     )
 }

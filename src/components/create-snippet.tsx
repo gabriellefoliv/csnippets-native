@@ -1,7 +1,6 @@
 import { ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
 import Editor from "./editor";
 import { ChangeEvent, FormEvent, useState } from "react";
-import { Dialog, DialogContent, DialogTrigger } from "./Dialog";
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { Header } from "./header";
@@ -37,8 +36,18 @@ export function CreateSnippet() {
 
             await setItem(JSON.stringify(data))
 
+            Toast.show({
+                type:"success",
+                text1:"Snippet salvo com sucesso!"
+            })
+
         } catch (error) {
             console.log(error)
+
+            Toast.show({
+                type: "error",
+                text1: "Erro ao armazenar snippet!"
+            })
 
         }
     }
