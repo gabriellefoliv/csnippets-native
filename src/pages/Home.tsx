@@ -1,17 +1,20 @@
-import { FlatList, Text, View } from "react-native";
+import { FlatList, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 import { Header } from "../components/header";
-import { useCallback, useEffect, useState } from "react";
+import { ReactNode, useCallback, useEffect, useState } from "react";
 import { CreateSnippet } from "../components/create-snippet";
 import { Snippet, SnippetProps } from "../components/snippet";
 
 import AsyncStorage, { useAsyncStorage } from "@react-native-async-storage/async-storage";
 import { useFocusEffect } from "@react-navigation/native";
 import { AddButton } from "../components/addButton";
-  
+
+import { FontAwesome5} from '@expo/vector-icons'
 
 
 export default function Home() {
+
+    // Async Storage
 
     const [data, setData] = useState<SnippetProps[]>([])
 
@@ -35,6 +38,16 @@ export default function Home() {
     useFocusEffect(useCallback(() => {
       handleFetchData()
     }, []))
+
+    // Search Functionality
+    const [search, setSearch] = useState('')
+
+    function handleSearch(event: any) {
+      const query = event.target.value 
+      setSearch(query)
+    }
+
+    const filteredSnippets = search !== '' ? data.filter(snippet => snippet.snippetTitle) : data
   
     return (
       <View>
