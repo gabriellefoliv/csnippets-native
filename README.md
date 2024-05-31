@@ -4,15 +4,10 @@
 <h3>Core functionalities:</h3>
 <p>- Create and storage snippets with Async Storage</p>
 <p>- Code editor: syntax highlighting for different programming languages</p>
-<p>- Search functionality: Allows users to search snippets</p>
-<p>- Search functionality: Allows users to search snippets</p>
-<p>- Categorization and tagging: Different folders or collections for snippets</p>
 <p>- Sharing and exporting: share snippets via email, social media etc</p>
 
 <br>
 <h3>Cloning</h3>
-
-How to clone the project
 
 ```bash
 git clone project-url-in-github
@@ -20,10 +15,8 @@ git clone project-url-in-github
 
 <h3>Starting</h3>
 
-How to start Code Snippets
-
 ```bash
 cd paste-name
-npm i   (to install dependencies)
+npm install
 npm start
 ```

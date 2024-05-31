@@ -15,14 +15,14 @@ export default function Profile() {
             const result = await ImagePicker.launchImageLibraryAsync({
                 mediaTypes: ImagePicker.MediaTypeOptions.Images,
                 allowsEditing: true,
-                aspect: [4,4],
+                aspect: [4, 4],
             })
 
-            if(result.assets) {
+            if (result.assets) {
                 setImage(result.assets[0].uri)
             }
         } catch (error) {
-            console.log(error) 
+            console.log(error)
             Alert.alert("Foto", "Não foi possível selecionar a imagem.")
         }
     }
@@ -31,10 +31,10 @@ export default function Profile() {
         <View>
             <Header title="Minha conta" />
             <ScrollView contentContainerClassName="px-8 pb-8 w-full items-center justify-center" showsVerticalScrollIndicator={false}>
-                
+
                 <Account
-                    image={image} 
-                    onChangeAvatar={handleSelectImage} 
+                    image={image}
+                    onChangeAvatar={handleSelectImage}
                 />
 
                 <View>

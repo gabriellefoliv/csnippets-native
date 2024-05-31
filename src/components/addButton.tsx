@@ -6,7 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 
 export function AddButton() {
 
-    const {navigate} = useNavigation()
+    const { navigate } = useNavigation()
 
     function handleAdd() {
         navigate("CreateSnippet")
