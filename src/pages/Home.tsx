@@ -7,7 +7,7 @@ import { Snippet, SnippetProps } from "../components/snippet";
 
 import AsyncStorage, { useAsyncStorage } from "@react-native-async-storage/async-storage";
 import { useFocusEffect } from "@react-navigation/native";
-import { AddButton } from "../components/addButton";
+import { AddButton } from "../components/add-button";
 
 import { FontAwesome5 } from '@expo/vector-icons'
 
