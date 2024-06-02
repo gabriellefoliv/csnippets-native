@@ -8,10 +8,7 @@ import {
 
 import { Feather } from "@expo/vector-icons";
 
-type Props = {
-    image?: string;
-    onChangeAvatar?: () => void;
-};
+type Props = { image?: string; onChangeAvatar?: () => void };
 
 export function Account({ onChangeAvatar, image }: Props) {
     return (
@@ -21,7 +18,7 @@ export function Account({ onChangeAvatar, image }: Props) {
                 className="w-24 h-52 z-10"
             />
 
-            <View className="bg-slate-400 self-stretch items-center pb-20 border border-white/10 mx-3 rounded-2xl -mt-5">
+            <View className="bg-teal-900 self-stretch items-center pb-20 border border-white/10 mx-3 rounded-2xl -mt-5">
                 <ImageBackground
                     source={require("../assets/header.png")}
                     className="px-6 py-8 h-40 items-center self-stretch border-b border-white/10 overflow-hidden"

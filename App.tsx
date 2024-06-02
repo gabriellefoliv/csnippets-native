@@ -7,8 +7,9 @@ import { createStackNavigator } from '@react-navigation/stack'
 import HomeTabs from './src/routes/routes'
 import { CreateSnippet } from './src/components/create-snippet'
 import Toast from 'react-native-toast-message'
+import { RootStackParamList } from './src/routes/RootStackParamList'
 
-const Stack = createStackNavigator()
+const Stack = createStackNavigator<RootStackParamList>()
 
 export default function App() {
   return (

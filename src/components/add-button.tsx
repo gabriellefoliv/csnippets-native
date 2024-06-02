@@ -1,19 +1,15 @@
 import { Text, TouchableOpacity, View } from "react-native";
 
 import { Feather } from '@expo/vector-icons'
-import { useNavigation } from "@react-navigation/native";
+import { NavigationProps } from "../routes/RootStackParamList";
 
+type Props = NavigationProps<'CreateSnippet'>
 
-export function AddButton() {
+export function AddButton({ navigation }: Props) {
 
-    const { navigate } = useNavigation()
-
-    function handleAdd() {
-        navigate("CreateSnippet")
-    }
 
     return (
-        <TouchableOpacity activeOpacity={0.5} onPress={handleAdd}>
+        <TouchableOpacity activeOpacity={0.5} onPress={() => navigation.navigate('CreateSnippet')}>
             <View className="flex-row w-full justify-center items-center h-28 ">
                 <View className="bg-gray-200 flex-row p-6 justify-center items-center px-20 rounded-xl border-black/25 border-solid border-2">
 

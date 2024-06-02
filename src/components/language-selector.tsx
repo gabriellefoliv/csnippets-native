@@ -19,7 +19,7 @@ interface LanguageSelectorProps {
 }
 
 export function LanguageSelector({ onChange }: LanguageSelectorProps) {
-  
+
   const [language, setLanguage] = useState<Language>("typescript");
 
   const handleChange = (value: string) => {
@@ -50,28 +50,28 @@ export function LanguageSelector({ onChange }: LanguageSelectorProps) {
 }
 
 const pickerSelectStyles = StyleSheet.create({
-    inputIOS: {
-        fontSize: 12,
-        paddingVertical: 8,
-        paddingRight: 8,
-        marginTop: 6, 
-        marginHorizontal: 12,
-        borderRadius: 12,
-        maxWidth: 150,
-        textAlign: 'center',
-        fontWeight:'bold',
-        color: 'white',
-        backgroundColor: "#164e63",
-        opacity: 0.7,
-    },
-    inputAndroid: {
-        fontSize: 16,
-        paddingHorizontal: 10,
-        paddingVertical: 8,
-        borderWidth: 0.5,
-        borderColor: 'purple',
-        borderRadius: 8,
-        color: 'black',
-        paddingRight: 30 
-    }
+  inputIOS: {
+    fontSize: 12,
+    paddingVertical: 8,
+    paddingRight: 8,
+    marginTop: 6,
+    marginHorizontal: 12,
+    borderRadius: 12,
+    maxWidth: 150,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    color: 'white',
+    backgroundColor: "#164e63",
+    opacity: 0.7,
+  },
+  inputAndroid: {
+    fontSize: 16,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    borderWidth: 0.5,
+    borderColor: 'purple',
+    borderRadius: 8,
+    color: 'black',
+    paddingRight: 30
+  }
 });

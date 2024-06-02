@@ -1,10 +1,8 @@
 import {
   Keyboard,
-  NativeSyntheticEvent,
   ScrollView,
   Text,
   TextInput,
-  TextInputKeyPressEventData,
   TouchableOpacity,
   View,
 } from "react-native";
@@ -26,16 +24,15 @@ import Toast from "react-native-toast-message";
 import { captureRef } from "react-native-view-shot";
 import * as Sharing from "expo-sharing";
 import { Language, LanguageSelector } from "./language-selector";
-import { useNavigation } from "@react-navigation/native";
+import { NavigationProps } from "../routes/RootStackParamList";
 
-export function CreateSnippet() {
+
+export function CreateSnippet({ navigation }: NavigationProps<'HomeTabs'>) {
   const [snippetTitle, setSnippetTitle] = useState("");
   const [snippet, setSnippet] = useState("");
-  
-  const { navigate } = useNavigation()
-  
+
   // Async Storage
-  
+
   const { getItem, setItem } = useAsyncStorage("@csnippets:snippets");
 
   async function handleNew() {
@@ -61,7 +58,7 @@ export function CreateSnippet() {
       });
 
 
-      navigate("Home")
+      navigation.navigate("HomeTabs")
 
 
     } catch (error) {
